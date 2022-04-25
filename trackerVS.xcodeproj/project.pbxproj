@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121B92815A1720017E1F5 /* AppDelegate.swift */; };
 		F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BB2815A1720017E1F5 /* SceneDelegate.swift */; };
-		F44121BE2815A1730017E1F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BD2815A1720017E1F5 /* ViewController.swift */; };
+		F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BD2815A1720017E1F5 /* MapViewController.swift */; };
 		F44121C12815A1730017E1F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44121BF2815A1730017E1F5 /* Main.storyboard */; };
 		F44121C32815A1750017E1F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44121C22815A1750017E1F5 /* Assets.xcassets */; };
 		F44121C62815A1750017E1F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44121C42815A1750017E1F5 /* LaunchScreen.storyboard */; };
+		F44121CF2815B4D60017E1F5 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = F44121CE2815B4D60017E1F5 /* GoogleMaps */; };
+		F44121D12815B4D60017E1F5 /* GoogleMapsBase in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D02815B4D60017E1F5 /* GoogleMapsBase */; };
+		F44121D32815B4D60017E1F5 /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D22815B4D60017E1F5 /* GoogleMapsCore */; };
+		F44121D52815B4D60017E1F5 /* GoogleMapsM4B in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D42815B4D60017E1F5 /* GoogleMapsM4B */; };
+		F44121D72815B4D60017E1F5 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D62815B4D60017E1F5 /* GooglePlaces */; };
+		F44121DA2815B6120017E1F5 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D92815B6120017E1F5 /* PinLayout */; };
+		F44121E52815B9700017E1F5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121E42815B9700017E1F5 /* Reusable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F44121B62815A1720017E1F5 /* trackerVS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trackerVS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44121B92815A1720017E1F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F44121BB2815A1720017E1F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F44121BD2815A1720017E1F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F44121BD2815A1720017E1F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F44121C02815A1730017E1F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F44121C22815A1750017E1F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44121C52815A1750017E1F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44121C72815A1750017E1F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F44121E42815B9700017E1F5 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44121DA2815B6120017E1F5 /* PinLayout in Frameworks */,
+				F44121CF2815B4D60017E1F5 /* GoogleMaps in Frameworks */,
+				F44121D32815B4D60017E1F5 /* GoogleMapsCore in Frameworks */,
+				F44121D52815B4D60017E1F5 /* GoogleMapsM4B in Frameworks */,
+				F44121D72815B4D60017E1F5 /* GooglePlaces in Frameworks */,
+				F44121D12815B4D60017E1F5 /* GoogleMapsBase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +70,88 @@
 		F44121B82815A1720017E1F5 /* trackerVS */ = {
 			isa = PBXGroup;
 			children = (
-				F44121B92815A1720017E1F5 /* AppDelegate.swift */,
-				F44121BB2815A1720017E1F5 /* SceneDelegate.swift */,
-				F44121BD2815A1720017E1F5 /* ViewController.swift */,
-				F44121BF2815A1730017E1F5 /* Main.storyboard */,
-				F44121C22815A1750017E1F5 /* Assets.xcassets */,
-				F44121C42815A1750017E1F5 /* LaunchScreen.storyboard */,
-				F44121C72815A1750017E1F5 /* Info.plist */,
+				F44121DB2815B6FF0017E1F5 /* App */,
+				F44121DC2815B70A0017E1F5 /* Core */,
+				F44121DF2815B7820017E1F5 /* Utils&Helpers */,
+				F44121DE2815B75D0017E1F5 /* Resources */,
+				F44121DD2815B7150017E1F5 /* Environments */,
 			);
 			path = trackerVS;
+			sourceTree = "<group>";
+		};
+		F44121DB2815B6FF0017E1F5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F44121B92815A1720017E1F5 /* AppDelegate.swift */,
+				F44121BB2815A1720017E1F5 /* SceneDelegate.swift */,
+				F44121E12815B8560017E1F5 /* BusinessLogic */,
+				F44121E22815B8650017E1F5 /* Entity */,
+				F44121E02815B8030017E1F5 /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F44121DC2815B70A0017E1F5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F44121DD2815B7150017E1F5 /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				F44121C72815A1750017E1F5 /* Info.plist */,
+			);
+			path = Environments;
+			sourceTree = "<group>";
+		};
+		F44121DE2815B75D0017E1F5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F44121C22815A1750017E1F5 /* Assets.xcassets */,
+				F44121C42815A1750017E1F5 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F44121DF2815B7820017E1F5 /* Utils&Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F44121E42815B9700017E1F5 /* Reusable.swift */,
+			);
+			path = "Utils&Helpers";
+			sourceTree = "<group>";
+		};
+		F44121E02815B8030017E1F5 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				F44121BF2815A1730017E1F5 /* Main.storyboard */,
+				F44121E32815B9110017E1F5 /* Map */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		F44121E12815B8560017E1F5 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		F44121E22815B8650017E1F5 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		F44121E32815B9110017E1F5 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F44121BD2815A1720017E1F5 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +170,14 @@
 			dependencies = (
 			);
 			name = trackerVS;
+			packageProductDependencies = (
+				F44121CE2815B4D60017E1F5 /* GoogleMaps */,
+				F44121D02815B4D60017E1F5 /* GoogleMapsBase */,
+				F44121D22815B4D60017E1F5 /* GoogleMapsCore */,
+				F44121D42815B4D60017E1F5 /* GoogleMapsM4B */,
+				F44121D62815B4D60017E1F5 /* GooglePlaces */,
+				F44121D92815B6120017E1F5 /* PinLayout */,
+			);
 			productName = trackerVS;
 			productReference = F44121B62815A1720017E1F5 /* trackerVS.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +206,10 @@
 				Base,
 			);
 			mainGroup = F44121AD2815A1720017E1F5;
+			packageReferences = (
+				F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
+				F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = F44121B72815A1720017E1F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44121BE2815A1730017E1F5 /* ViewController.swift in Sources */,
+				F44121E52815B9700017E1F5 /* Reusable.swift in Sources */,
+				F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */,
 				F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */,
 				F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */,
 			);
@@ -290,7 +390,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = trackerVS/Info.plist;
+				INFOPLIST_FILE = trackerVS/Environments/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходимо разрешение отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходимо разрешение отслеживать ваше местоположение";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +420,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = trackerVS/Info.plist;
+				INFOPLIST_FILE = trackerVS/Environments/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходимо разрешение отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходимо разрешение отслеживать ваше местоположение";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -358,6 +464,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F44121CE2815B4D60017E1F5 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMaps;
+		};
+		F44121D02815B4D60017E1F5 /* GoogleMapsBase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMapsBase;
+		};
+		F44121D22815B4D60017E1F5 /* GoogleMapsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMapsCore;
+		};
+		F44121D42815B4D60017E1F5 /* GoogleMapsM4B */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMapsM4B;
+		};
+		F44121D62815B4D60017E1F5 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GooglePlaces;
+		};
+		F44121D92815B6120017E1F5 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F44121AE2815A1720017E1F5 /* Project object */;
 }
