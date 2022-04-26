@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
         }
     }
     private var routePath: GMSMutablePath?
-    private var locationManager: CLLocationManager?
+    private let locationService = LocationService()
     
     private var buttonCurrentLocation: UIButton = {
         let button = UIButton(type: .system)
@@ -53,7 +53,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         configureMap()
         configureUI()
-        configurLocationManager()
         configureRoutePath()
     }
     
@@ -94,44 +93,10 @@ class MapViewController: UIViewController {
     // MARK: - Button actions
     @objc private func buttonCurrentLocationTap(sender : UIButton) {
         configureRoutePath()
-        locationManager?.startUpdatingLocation()
+        locationService.stopLocation()
     }
     
     @objc private func buttonStopUpdatingLocationTap(sender : UIButton) {
-        locationManager?.stopUpdatingLocation()
-    }
-}
-
-// MARK: - CLLocationManagerDelegate
-extension MapViewController: CLLocationManagerDelegate {
-    private func configurLocationManager() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-            locationManager?.delegate = self
-            locationManager?.requestWhenInUseAuthorization()
-            locationManager?.allowsBackgroundLocationUpdates = true
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-         print("error:: \(error.localizedDescription)")
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager?.requestLocation()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        routePath?.add(location.coordinate)
-        route?.path = routePath
-
-        let position = GMSCameraPosition.camera(withTarget: location.coordinate , zoom: 15)
-        mapHolderView.animate(to: position)
-        print("location:: \(location.coordinate)")
-        
-        addMarker(location.coordinate)
+        locationService.stopLocation()
     }
 }

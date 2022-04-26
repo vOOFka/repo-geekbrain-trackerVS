@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4159167281886E8000AFFBA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4159166281886E8000AFFBA /* Observable.swift */; };
 		F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121B92815A1720017E1F5 /* AppDelegate.swift */; };
 		F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BB2815A1720017E1F5 /* SceneDelegate.swift */; };
 		F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BD2815A1720017E1F5 /* MapViewController.swift */; };
@@ -20,9 +21,12 @@
 		F44121D72815B4D60017E1F5 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D62815B4D60017E1F5 /* GooglePlaces */; };
 		F44121DA2815B6120017E1F5 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D92815B6120017E1F5 /* PinLayout */; };
 		F44121E52815B9700017E1F5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121E42815B9700017E1F5 /* Reusable.swift */; };
+		F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACD28187EE7001470E8 /* LocationService.swift */; };
+		F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4159166281886E8000AFFBA /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F44121B62815A1720017E1F5 /* trackerVS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trackerVS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44121B92815A1720017E1F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F44121BB2815A1720017E1F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +36,8 @@
 		F44121C52815A1750017E1F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44121C72815A1750017E1F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F44121E42815B9700017E1F5 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		F4979ACD28187EE7001470E8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,8 @@
 		F44121DF2815B7820017E1F5 /* Utils&Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */,
+				F4159166281886E8000AFFBA /* Observable.swift */,
 				F44121E42815B9700017E1F5 /* Reusable.swift */,
 			);
 			path = "Utils&Helpers";
@@ -135,6 +143,7 @@
 		F44121E12815B8560017E1F5 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				F4979ACD28187EE7001470E8 /* LocationService.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -239,6 +248,9 @@
 			files = (
 				F44121E52815B9700017E1F5 /* Reusable.swift in Sources */,
 				F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */,
+				F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */,
+				F4159167281886E8000AFFBA /* Observable.swift in Sources */,
+				F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */,
 				F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */,
 				F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */,
 			);
