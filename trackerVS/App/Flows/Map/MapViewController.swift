@@ -35,7 +35,7 @@ class MapViewController: UIViewController {
         button.clipsToBounds = true
         button.addTarget(self, action:#selector(buttonCurrentLocationTap), for: .touchUpInside)
         return button
-      }()
+    }()
     private var buttonStopUpdatingLocation: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 15.0)
@@ -46,14 +46,14 @@ class MapViewController: UIViewController {
         button.clipsToBounds = true
         button.addTarget(self, action:#selector(buttonStopUpdatingLocationTap), for: .touchUpInside)
         return button
-      }()
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMap()
         configureUI()
-        configureRoutePath()
+        configureLocationManager()
     }
     
     override func viewDidLayoutSubviews() {
@@ -84,6 +84,19 @@ class MapViewController: UIViewController {
         mapHolderView.mapType = .normal
     }
     
+    private func configureLocationManager() {
+        locationService.currentLocation.addObserver(self) { [weak self] (_, _) in
+            guard let self = self,
+                  let currentLocation = self.locationService.currentLocation.value else { return }
+            self.routePath?.add(currentLocation)
+            self.route?.path = self.routePath
+            
+            let position = GMSCameraPosition.camera(withTarget: currentLocation , zoom: 15)
+            self.mapHolderView.animate(to: position)
+            //self.addMarker(currentLocation)
+        }
+    }
+    
     // MARK: - Methods
     private func addMarker(_ coordinate: CLLocationCoordinate2D) {
         marker = GMSMarker(position: coordinate)
@@ -93,7 +106,7 @@ class MapViewController: UIViewController {
     // MARK: - Button actions
     @objc private func buttonCurrentLocationTap(sender : UIButton) {
         configureRoutePath()
-        locationService.stopLocation()
+        locationService.startLocation()
     }
     
     @objc private func buttonStopUpdatingLocationTap(sender : UIButton) {
