@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import PinLayout
+import CoreLocation
 
 class MapViewController: UIViewController {
     // MARK: - Properties
@@ -25,6 +26,7 @@ class MapViewController: UIViewController {
     private var routePath: GMSMutablePath?
     private let locationService = LocationService()
     
+    private let realmService: RealmService = RealmServiceImplimentation()
     private var trackLocations: [CLLocationCoordinate2D] = []
     
     private var buttonStartUpdatingLocation: UIButton = {
@@ -49,7 +51,17 @@ class MapViewController: UIViewController {
         button.addTarget(self, action:#selector(buttonStopUpdatingLocationTap), for: .touchUpInside)
         return button
     }()
-    
+    private var buttonShowPreviousRoute: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.titleLabel?.tintColor = .white
+        button.backgroundColor = .systemTeal
+        button.setTitle("Show the previous route", for: .normal)
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
+        button.addTarget(self, action:#selector(buttonShowPreviousRouteTap), for: .touchUpInside)
+        return button
+    }()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +73,7 @@ class MapViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
+        buttonShowPreviousRoute.pin.top(50.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
         buttonStartUpdatingLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
         buttonStopUpdatingLocation.pin.bottom(30.0).left(20.0).height(30.0).minWidth(160.0).sizeToFit()
     }
@@ -69,15 +82,18 @@ class MapViewController: UIViewController {
     private func configureUI() {
         mapHolderView.addSubview(buttonStartUpdatingLocation)
         mapHolderView.addSubview(buttonStopUpdatingLocation)
+        mapHolderView.addSubview(buttonShowPreviousRoute)
     }
     
     private func configureRoutePath() {
-      //  mapHolderView.clear()
+        mapHolderView.clear()
         
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
         route?.map = mapHolderView
+        
+        trackLocations = []
     }
     
     private func configureMap() {
@@ -89,6 +105,8 @@ class MapViewController: UIViewController {
     }
     
     private func configureLocationManager() {
+        locationService.viewController = self
+        
         locationService.currentLocation.addObserver(self) { [weak self] (_, _) in
             guard let self = self,
                   let currentLocation = self.locationService.currentLocation.value else { return }
@@ -108,14 +126,78 @@ class MapViewController: UIViewController {
         marker?.map = mapHolderView
     }
     
+    public func cancelCurrentTracking() {
+        locationService.stopLocation()
+        showPreviousRoute()
+    }
+    
+    private func showPreviousRoute() {
+        configureRoutePath()
+        pullFromRealm()
+        
+        guard !trackLocations.isEmpty,
+              let firstTrackingPoint = trackLocations.first,
+              let lastTrackingPoint = trackLocations.last
+        else {
+            showError(message: "Previous routes not found", title: "Notification")
+            return
+        }
+        
+        trackLocations.forEach { point in
+            self.routePath?.add(point)
+            self.route?.path = self.routePath
+            self.addMarker(point)
+        }
+        
+        let cameraUpdate = GMSCameraUpdate.fit(
+            GMSCoordinateBounds(coordinate: firstTrackingPoint,
+                                coordinate: lastTrackingPoint))
+        mapHolderView.moveCamera(cameraUpdate)
+    }
+    
     // MARK: - Button actions
     @objc private func buttonStartUpdatingLocationTap(sender : UIButton) {
         configureRoutePath()
-        trackLocations = []
         locationService.startLocation()
     }
     
     @objc private func buttonStopUpdatingLocationTap(sender : UIButton) {
         locationService.stopLocation()
+        pushToRealm(trackLocations)
+        trackLocations = []
+    }
+    
+    @objc private func buttonShowPreviousRouteTap(sender : UIButton) {
+        locationService.isActiveLocation ? showTrakingStillActive() : showPreviousRoute()
+    }
+}
+
+extension MapViewController {
+    //Загрузка данных в БД Realm
+    fileprivate func pushToRealm(_ trackLocations: [CLLocationCoordinate2D]) {
+        guard !trackLocations.isEmpty,
+              trackLocations.count > 1 else { return }
+        //Преобразование в Realm модель
+        let trackLocationsRealm = RealmPath(trackLocations)
+        //Загрузка
+        do {
+            let saveToDB = try realmService.update(trackLocationsRealm)
+            print(saveToDB.configuration.fileURL?.absoluteString ?? "No avaliable file DB")
+        } catch (let error) {
+            showError(message: error.localizedDescription)
+        }
+    }
+    
+    //Получение данных из БД
+    fileprivate func pullFromRealm() {
+        do {
+            let lastRealmPath = try realmService.get(RealmPath.self).last
+            let lastRealmPathPoints = lastRealmPath?.trackLocations
+                .toArray()
+                .compactMap({ CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) })
+            trackLocations = lastRealmPathPoints ?? []
+        } catch (let error) {
+            showError(message: error.localizedDescription)
+        }
     }
 }

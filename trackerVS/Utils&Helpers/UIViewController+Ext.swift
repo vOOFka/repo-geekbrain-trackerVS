@@ -17,4 +17,22 @@ extension UIViewController {
         alertViewController.addAction(closeAction)
         present(alertViewController, animated: true)
     }
+    
+    func showTrakingStillActive(handler: ((UIAlertAction) -> Void)? = nil) {
+        let message = "Tracking is still active, OK - cancel the current route and show the previous one, attention cancellation will lead to the loss of the current route."
+        
+        let alertViewController = UIAlertController(title: "Notification",
+                                                    message: message,
+                                                    preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            let mapViewController = self as? MapViewController
+            mapViewController?.cancelCurrentTracking()
+        })
+        let closeAction = UIAlertAction(title: "Close", style: .default, handler: handler)
+        
+        alertViewController.addAction(okAction)
+        alertViewController.addAction(closeAction)
+        present(alertViewController, animated: true)
+    }
 }

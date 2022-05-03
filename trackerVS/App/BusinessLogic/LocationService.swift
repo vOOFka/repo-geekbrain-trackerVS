@@ -5,14 +5,16 @@
 //  Created by Home on 26.04.2022.
 //
 
-import Foundation
 import GoogleMaps
+import UIKit
 
 final class LocationService: NSObject {
     private let locationManager = CLLocationManager()
+    weak var viewController: UIViewController?
+    var isActiveLocation = false
     
     private(set) var currentLocation = Observable<CLLocationCoordinate2D?>(nil)
-    var lastKnownLocation: CLLocationCoordinate2D?
+    private var lastKnownLocation: CLLocationCoordinate2D?
     
     override init() {
         super.init()
@@ -22,10 +24,12 @@ final class LocationService: NSObject {
     func startLocation() {
         lastKnownLocation = currentLocation.value
         locationManager.startUpdatingLocation()
+        isActiveLocation = true
     }
     
     func stopLocation() {
         locationManager.stopUpdatingLocation()
+        isActiveLocation = false
     }
     
 }
@@ -43,7 +47,7 @@ extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
-        print("error:: \(error.localizedDescription)")
+        viewController?.showError(message: error.localizedDescription)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
