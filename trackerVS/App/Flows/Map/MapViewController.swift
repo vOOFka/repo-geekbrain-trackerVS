@@ -93,7 +93,7 @@ class MapViewController: UIViewController {
         routePath = GMSMutablePath()
         route?.map = mapHolderView
         
-        trackLocations = []
+        cleanTrackLocations()
     }
     
     private func configureMap() {
@@ -121,6 +121,10 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - Methods
+    private func cleanTrackLocations() {
+        trackLocations = []
+    }
+
     private func addMarker(_ coordinate: CLLocationCoordinate2D) {
         marker = GMSMarker(position: coordinate)
         marker?.map = mapHolderView
@@ -163,8 +167,7 @@ class MapViewController: UIViewController {
     
     @objc private func buttonStopUpdatingLocationTap(sender : UIButton) {
         locationService.stopLocation()
-        pushToRealm(trackLocations)
-        trackLocations = []
+        pushToRealm()
     }
     
     @objc private func buttonShowPreviousRouteTap(sender : UIButton) {
@@ -174,7 +177,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController {
     //Загрузка данных в БД Realm
-    fileprivate func pushToRealm(_ trackLocations: [CLLocationCoordinate2D]) {
+    fileprivate func pushToRealm() {
         guard !trackLocations.isEmpty,
               trackLocations.count > 1 else { return }
         //Преобразование в Realm модель
@@ -182,6 +185,7 @@ extension MapViewController {
         //Загрузка
         do {
             let saveToDB = try realmService.update(trackLocationsRealm)
+            cleanTrackLocations()
             print(saveToDB.configuration.fileURL?.absoluteString ?? "No avaliable file DB")
         } catch (let error) {
             showError(message: error.localizedDescription)

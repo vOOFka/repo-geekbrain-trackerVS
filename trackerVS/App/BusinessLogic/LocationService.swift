@@ -42,6 +42,9 @@ extension LocationService: CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.pausesLocationUpdatesAutomatically = false
+            locationManager.startMonitoringSignificantLocationChanges()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         }
     }
     
@@ -58,7 +61,8 @@ extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last,
-              location.coordinate != lastKnownLocation
+              location.coordinate != lastKnownLocation,
+              isActiveLocation
         else { return }
         currentLocation.value = location.coordinate
         print("location:: \(location.coordinate)")
