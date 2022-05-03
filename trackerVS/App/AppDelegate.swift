@@ -10,11 +10,15 @@ import GoogleMaps
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") {
+            let nsDictionary = NSDictionary(contentsOfFile: path)
+            if let apiKey = nsDictionary?["API_KEY"] as? String {
+                print("AppDelegate: API_KEY found")
+                GMSServices.provideAPIKey(apiKey)
+            }
+        }
         return true
     }
 
@@ -34,4 +38,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
