@@ -12,6 +12,7 @@ final class LocationService: NSObject {
     private let locationManager = CLLocationManager()
     
     private(set) var currentLocation = Observable<CLLocationCoordinate2D?>(nil)
+    var lastKnownLocation: CLLocationCoordinate2D?
     
     override init() {
         super.init()
@@ -19,6 +20,7 @@ final class LocationService: NSObject {
     }
     
     func startLocation() {
+        lastKnownLocation = currentLocation.value
         locationManager.startUpdatingLocation()
     }
     
@@ -33,12 +35,14 @@ extension LocationService: CLLocationManagerDelegate {
     private func configurLocationManager() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
         print("error:: \(error.localizedDescription)")
     }
     
@@ -49,7 +53,9 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
+        guard let location = locations.last,
+              location.coordinate != lastKnownLocation
+        else { return }
         currentLocation.value = location.coordinate
         print("location:: \(location.coordinate)")
     }

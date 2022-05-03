@@ -25,15 +25,17 @@ class MapViewController: UIViewController {
     private var routePath: GMSMutablePath?
     private let locationService = LocationService()
     
-    private var buttonCurrentLocation: UIButton = {
+    private var trackLocations: [CLLocationCoordinate2D] = []
+    
+    private var buttonStartUpdatingLocation: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 15.0)
         button.titleLabel?.tintColor = .black
         button.backgroundColor = .orange
-        button.setTitle("Get my location", for: .normal)
+        button.setTitle("Start a new track", for: .normal)
         button.layer.cornerRadius = 5.0
         button.clipsToBounds = true
-        button.addTarget(self, action:#selector(buttonCurrentLocationTap), for: .touchUpInside)
+        button.addTarget(self, action:#selector(buttonStartUpdatingLocationTap), for: .touchUpInside)
         return button
     }()
     private var buttonStopUpdatingLocation: UIButton = {
@@ -41,7 +43,7 @@ class MapViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 15.0)
         button.titleLabel?.tintColor = .white
         button.backgroundColor = .brown
-        button.setTitle("Stop updating location", for: .normal)
+        button.setTitle("Finish the track", for: .normal)
         button.layer.cornerRadius = 5.0
         button.clipsToBounds = true
         button.addTarget(self, action:#selector(buttonStopUpdatingLocationTap), for: .touchUpInside)
@@ -59,17 +61,19 @@ class MapViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
-        buttonCurrentLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
+        buttonStartUpdatingLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
         buttonStopUpdatingLocation.pin.bottom(30.0).left(20.0).height(30.0).minWidth(160.0).sizeToFit()
     }
     
     // MARK: - Configure
     private func configureUI() {
-        mapHolderView.addSubview(buttonCurrentLocation)
+        mapHolderView.addSubview(buttonStartUpdatingLocation)
         mapHolderView.addSubview(buttonStopUpdatingLocation)
     }
     
     private func configureRoutePath() {
+      //  mapHolderView.clear()
+        
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
@@ -93,7 +97,8 @@ class MapViewController: UIViewController {
             
             let position = GMSCameraPosition.camera(withTarget: currentLocation , zoom: 15)
             self.mapHolderView.animate(to: position)
-            //self.addMarker(currentLocation)
+            self.addMarker(currentLocation)
+            self.trackLocations.append(currentLocation)
         }
     }
     
@@ -104,8 +109,9 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - Button actions
-    @objc private func buttonCurrentLocationTap(sender : UIButton) {
+    @objc private func buttonStartUpdatingLocationTap(sender : UIButton) {
         configureRoutePath()
+        trackLocations = []
         locationService.startLocation()
     }
     
