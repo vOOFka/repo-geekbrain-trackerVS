@@ -17,7 +17,7 @@ protocol RealmService {
     func delete<T: Object> (_ item: T) throws
 }
 
-class RealmServiceImplimentation: RealmService {
+final class RealmServiceImplimentation: RealmService {
     //Update or save some objects in Realm DB
     func update<T: Object>(_ items: [T]) throws -> Realm {
         let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
