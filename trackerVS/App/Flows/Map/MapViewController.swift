@@ -77,9 +77,12 @@ final class MapViewController: UIViewController, Coordinating {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
-        buttonShowPreviousRoute.pin.top(50.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
-        buttonStartUpdatingLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
-        buttonStopUpdatingLocation.pin.bottom(30.0).left(20.0).height(30.0).minWidth(160.0).sizeToFit()
+        
+        buttonShowPreviousRoute.pin.bottom(120.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
+        buttonStartUpdatingLocation.pin.below(of: buttonShowPreviousRoute, aligned: .center)
+            .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
+        buttonStopUpdatingLocation.pin.below(of: buttonStartUpdatingLocation, aligned: .center)
+            .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
     }
     
     // MARK: - Configure
