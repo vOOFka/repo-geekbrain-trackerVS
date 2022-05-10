@@ -26,4 +26,18 @@ class AppService {
         viewController.present(modalViewController, animated: true, completion: nil)
     }
     
+    func showBlurView(_ rootViewController: UIViewController) {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
+        rootViewController.view.addSubview(blurEffectView)
+    }
+    
+    func hideBlurView(_ rootViewController: UIViewController) {
+        rootViewController.view.subviews.forEach { subview in
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+    }
 }
