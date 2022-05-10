@@ -7,20 +7,18 @@
 
 import UIKit
 
-final class AuthViewController: UIViewController {
-    // MARK: - Outlets
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var enterButton: UIButton!
-    @IBOutlet weak var buttonsStackView: UIStackView!
-    
+final class AuthViewController: UIViewController, Coordinating {
     // MARK: - Public properties
     var viewModel: AuthViewModel?
+    var coordinator: Coordinator?
     
-    // MARK: - Private properties
-    //private let appService = AppService()
+    // MARK: - Outlets
+    @IBOutlet weak private var scrollView: UIScrollView!
+    @IBOutlet weak private var loginTextField: UITextField!
+    @IBOutlet weak private var passwordTextField: UITextField!
+    @IBOutlet weak private var signUpButton: UIButton!
+    @IBOutlet weak private var enterButton: UIButton!
+    @IBOutlet weak private var buttonsStackView: UIStackView!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -44,7 +42,6 @@ final class AuthViewController: UIViewController {
     private func configUI() {
         loginTextField.text = "Test"
         passwordTextField.text = "qwerty1234"
-        //signUpButton.isEnabled = (AppSession.shared.currentUser != nil) ?  false : true
     }
     
     private func registerKeyboardNotifications() {
@@ -113,9 +110,8 @@ final class AuthViewController: UIViewController {
         viewModel?.authRequest(login, password) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .Success(let user):
-                print("Show map VC!!! \(user.login)::\(user.password)")
-                //self.appService.showModalScene(viewController: self, with: .goodsCatalog)
+            case .Success(_):
+                self.coordinator?.goToScene(with: .map)
             case .Failure(let error):
                 self.showError(message: error)
             }

@@ -10,8 +10,11 @@ import GoogleMaps
 import PinLayout
 import CoreLocation
 
-class MapViewController: UIViewController {
-    // MARK: - Properties
+final class MapViewController: UIViewController, Coordinating {
+    // MARK: - Public properties
+    var coordinator: Coordinator?
+    
+    // MARK: - Private properties
     private let mapHolderView = GMSMapView()
     private let baseCoordinates = CLLocationCoordinate2D(latitude: 58.52107786398308, longitude: 31.275274938749853)
     private let baseZoom: Float = 15.0
@@ -62,6 +65,7 @@ class MapViewController: UIViewController {
         button.addTarget(self, action:#selector(buttonShowPreviousRouteTap), for: .touchUpInside)
         return button
     }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
