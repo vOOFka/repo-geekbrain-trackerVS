@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class User: Object {
+final class RealmUser: Object {
     @Persisted (primaryKey: true) var login: String
     @Persisted var password: String
     

@@ -14,7 +14,6 @@ final class AuthViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var enterButton: UIButton!
-    @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var buttonsStackView: UIStackView!
     
     // MARK: - Public properties
@@ -83,7 +82,23 @@ final class AuthViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func signUpButtonTap(_ sender: Any) {
-       // appService.showModalScene(viewController: self, with: .userProfile)
+        guard let login = loginTextField.text,
+              let password = passwordTextField.text,
+              !login.isEmpty,
+              !password.isEmpty
+        else {
+            showError(message: "Need enter login and password")
+            return
+        }
+        viewModel?.signUpRequest(login, password) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .Success(let user):
+                self.showError(message: "User - \(user.login) successfully created/modified.", title:"Success")
+            case .Failure(let error):
+                self.showError(message: error)
+            }
+        }
     }
     
     @IBAction private func enterButtonTap(_ sender: Any) {
@@ -105,9 +120,5 @@ final class AuthViewController: UIViewController {
                 self.showError(message: error)
             }
         }
-    }
-    
-    @IBAction func exitButtonTap(_ sender: Any) {
-
     }
 }
