@@ -10,8 +10,11 @@ import GoogleMaps
 import PinLayout
 import CoreLocation
 
-class MapViewController: UIViewController {
-    // MARK: - Properties
+final class MapViewController: UIViewController, Coordinating {
+    // MARK: - Public properties
+    var coordinator: Coordinator?
+    
+    // MARK: - Private properties
     private let mapHolderView = GMSMapView()
     private let baseCoordinates = CLLocationCoordinate2D(latitude: 58.52107786398308, longitude: 31.275274938749853)
     private let baseZoom: Float = 15.0
@@ -62,6 +65,7 @@ class MapViewController: UIViewController {
         button.addTarget(self, action:#selector(buttonShowPreviousRouteTap), for: .touchUpInside)
         return button
     }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +77,12 @@ class MapViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
-        buttonShowPreviousRoute.pin.top(50.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
-        buttonStartUpdatingLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
-        buttonStopUpdatingLocation.pin.bottom(30.0).left(20.0).height(30.0).minWidth(160.0).sizeToFit()
+        
+        buttonShowPreviousRoute.pin.bottom(120.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
+        buttonStartUpdatingLocation.pin.below(of: buttonShowPreviousRoute, aligned: .center)
+            .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
+        buttonStopUpdatingLocation.pin.below(of: buttonStartUpdatingLocation, aligned: .center)
+            .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
     }
     
     // MARK: - Configure

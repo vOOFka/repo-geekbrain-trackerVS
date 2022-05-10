@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 import GoogleMaps
 
-class RealmPath: Object {
-    @Persisted(primaryKey: true) var pathID: String = UUID.init().uuidString
+final class RealmPath: Object {
+    @Persisted (primaryKey: true) var pathID: String = UUID.init().uuidString
     @Persisted var date: Date
     @Persisted var trackLocations = List<RealmPathPoints>()
 
@@ -29,7 +29,7 @@ class RealmPath: Object {
     }
 }
 
-class RealmPathPoints: Object {
+final class RealmPathPoints: Object {
     @Persisted var latitude: Double
     @Persisted var longitude: Double
     

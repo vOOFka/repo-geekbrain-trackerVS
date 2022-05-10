@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40CED4C2823000700B93879 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CED4B2823000700B93879 /* AuthViewModel.swift */; };
+		F40CED4E282300C600B93879 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CED4D282300C600B93879 /* Result.swift */; };
 		F4159167281886E8000AFFBA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4159166281886E8000AFFBA /* Observable.swift */; };
+		F430EB94282A9F9A00EAD332 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430EB93282A9F9A00EAD332 /* Coordinator.swift */; };
+		F430EB96282AA07D00EAD332 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430EB95282AA07D00EAD332 /* AppCoordinator.swift */; };
+		F430EB98282AA87F00EAD332 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430EB97282AA87F00EAD332 /* AppService.swift */; };
 		F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121B92815A1720017E1F5 /* AppDelegate.swift */; };
 		F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BB2815A1720017E1F5 /* SceneDelegate.swift */; };
 		F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BD2815A1720017E1F5 /* MapViewController.swift */; };
@@ -31,10 +36,17 @@
 		F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */; };
 		F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACD28187EE7001470E8 /* LocationService.swift */; };
 		F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */; };
+		F49B39292822F1A7007FEB72 /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B39282822F1A7007FEB72 /* RealmUser.swift */; };
+		F49B392C2822F8F7007FEB72 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B392B2822F8F7007FEB72 /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40CED4B2823000700B93879 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		F40CED4D282300C600B93879 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F4159166281886E8000AFFBA /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		F430EB93282A9F9A00EAD332 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F430EB95282AA07D00EAD332 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F430EB97282AA87F00EAD332 /* AppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		F44121B62815A1720017E1F5 /* trackerVS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trackerVS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44121B92815A1720017E1F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F44121BB2815A1720017E1F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +64,8 @@
 		F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4979ACD28187EE7001470E8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		F49B39282822F1A7007FEB72 /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		F49B392B2822F8F7007FEB72 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F430EB92282A9F7900EAD332 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F430EB93282A9F9A00EAD332 /* Coordinator.swift */,
+				F430EB95282AA07D00EAD332 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		F44121AD2815A1720017E1F5 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +139,7 @@
 		F44121DC2815B70A0017E1F5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F430EB92282A9F7900EAD332 /* Coordinator */,
 				F465FC2328213D59000EEFD3 /* Services */,
 			);
 			path = Core;
@@ -142,6 +166,7 @@
 		F44121DF2815B7820017E1F5 /* Utils&Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F40CED4D282300C600B93879 /* Result.swift */,
 				F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */,
 				F4159166281886E8000AFFBA /* Observable.swift */,
 				F44121E42815B9700017E1F5 /* Reusable.swift */,
@@ -155,8 +180,9 @@
 		F44121E02815B8030017E1F5 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				F44121BF2815A1730017E1F5 /* Main.storyboard */,
+				F49B392A2822F885007FEB72 /* Auth */,
 				F44121E32815B9110017E1F5 /* Map */,
+				F44121BF2815A1730017E1F5 /* Main.storyboard */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -189,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				F465FC2428213D7A000EEFD3 /* RealmPath.swift */,
+				F49B39282822F1A7007FEB72 /* RealmUser.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -196,9 +223,19 @@
 		F465FC2328213D59000EEFD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F430EB97282AA87F00EAD332 /* AppService.swift */,
 				F465FC2028213976000EEFD3 /* RealmService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F49B392A2822F885007FEB72 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F49B392B2822F8F7007FEB72 /* AuthViewController.swift */,
+				F40CED4B2823000700B93879 /* AuthViewModel.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,10 +330,17 @@
 				F465FC1A28213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift in Sources */,
 				F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */,
 				F465FC2528213D7A000EEFD3 /* RealmPath.swift in Sources */,
+				F40CED4C2823000700B93879 /* AuthViewModel.swift in Sources */,
+				F430EB96282AA07D00EAD332 /* AppCoordinator.swift in Sources */,
+				F40CED4E282300C600B93879 /* Result.swift in Sources */,
 				F465FC2928216B13000EEFD3 /* DetachableObject.swift in Sources */,
+				F49B39292822F1A7007FEB72 /* RealmUser.swift in Sources */,
 				F465FC2128213976000EEFD3 /* RealmService.swift in Sources */,
+				F430EB94282A9F9A00EAD332 /* Coordinator.swift in Sources */,
 				F465FC2728215F62000EEFD3 /* Date+Ext.swift in Sources */,
 				F4159167281886E8000AFFBA /* Observable.swift in Sources */,
+				F430EB98282AA87F00EAD332 /* AppService.swift in Sources */,
+				F49B392C2822F8F7007FEB72 /* AuthViewController.swift in Sources */,
 				F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */,
 				F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */,
 				F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */,
