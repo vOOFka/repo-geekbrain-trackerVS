@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4159167281886E8000AFFBA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4159166281886E8000AFFBA /* Observable.swift */; };
 		F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121B92815A1720017E1F5 /* AppDelegate.swift */; };
 		F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BB2815A1720017E1F5 /* SceneDelegate.swift */; };
 		F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121BD2815A1720017E1F5 /* MapViewController.swift */; };
@@ -20,9 +21,20 @@
 		F44121D72815B4D60017E1F5 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D62815B4D60017E1F5 /* GooglePlaces */; };
 		F44121DA2815B6120017E1F5 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F44121D92815B6120017E1F5 /* PinLayout */; };
 		F44121E52815B9700017E1F5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44121E42815B9700017E1F5 /* Reusable.swift */; };
+		F465FC1A28213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FC1928213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift */; };
+		F465FC1D282138EE000EEFD3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F465FC1C282138EE000EEFD3 /* Realm */; };
+		F465FC1F282138EE000EEFD3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F465FC1E282138EE000EEFD3 /* RealmSwift */; };
+		F465FC2128213976000EEFD3 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FC2028213976000EEFD3 /* RealmService.swift */; };
+		F465FC2528213D7A000EEFD3 /* RealmPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FC2428213D7A000EEFD3 /* RealmPath.swift */; };
+		F465FC2728215F62000EEFD3 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FC2628215F62000EEFD3 /* Date+Ext.swift */; };
+		F465FC2928216B13000EEFD3 /* DetachableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FC2828216B13000EEFD3 /* DetachableObject.swift */; };
+		F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */; };
+		F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACD28187EE7001470E8 /* LocationService.swift */; };
+		F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4159166281886E8000AFFBA /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F44121B62815A1720017E1F5 /* trackerVS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trackerVS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44121B92815A1720017E1F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F44121BB2815A1720017E1F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +44,14 @@
 		F44121C52815A1750017E1F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44121C72815A1750017E1F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F44121E42815B9700017E1F5 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		F465FC1928213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Ext.swift"; sourceTree = "<group>"; };
+		F465FC2028213976000EEFD3 /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		F465FC2428213D7A000EEFD3 /* RealmPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPath.swift; sourceTree = "<group>"; };
+		F465FC2628215F62000EEFD3 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		F465FC2828216B13000EEFD3 /* DetachableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachableObject.swift; sourceTree = "<group>"; };
+		F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F4979ACD28187EE7001470E8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F465FC1F282138EE000EEFD3 /* RealmSwift in Frameworks */,
+				F465FC1D282138EE000EEFD3 /* Realm in Frameworks */,
 				F44121DA2815B6120017E1F5 /* PinLayout in Frameworks */,
 				F44121CF2815B4D60017E1F5 /* GoogleMaps in Frameworks */,
 				F44121D32815B4D60017E1F5 /* GoogleMapsCore in Frameworks */,
@@ -94,6 +116,7 @@
 		F44121DC2815B70A0017E1F5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F465FC2328213D59000EEFD3 /* Services */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -102,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				F44121C72815A1750017E1F5 /* Info.plist */,
+				F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */,
 			);
 			path = Environments;
 			sourceTree = "<group>";
@@ -118,7 +142,12 @@
 		F44121DF2815B7820017E1F5 /* Utils&Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */,
+				F4159166281886E8000AFFBA /* Observable.swift */,
 				F44121E42815B9700017E1F5 /* Reusable.swift */,
+				F465FC1928213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift */,
+				F465FC2628215F62000EEFD3 /* Date+Ext.swift */,
+				F465FC2828216B13000EEFD3 /* DetachableObject.swift */,
 			);
 			path = "Utils&Helpers";
 			sourceTree = "<group>";
@@ -135,6 +164,7 @@
 		F44121E12815B8560017E1F5 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				F4979ACD28187EE7001470E8 /* LocationService.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -142,6 +172,7 @@
 		F44121E22815B8650017E1F5 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				F465FC22282139B9000EEFD3 /* Realm */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -152,6 +183,22 @@
 				F44121BD2815A1720017E1F5 /* MapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		F465FC22282139B9000EEFD3 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				F465FC2428213D7A000EEFD3 /* RealmPath.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		F465FC2328213D59000EEFD3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F465FC2028213976000EEFD3 /* RealmService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +224,8 @@
 				F44121D42815B4D60017E1F5 /* GoogleMapsM4B */,
 				F44121D62815B4D60017E1F5 /* GooglePlaces */,
 				F44121D92815B6120017E1F5 /* PinLayout */,
+				F465FC1C282138EE000EEFD3 /* Realm */,
+				F465FC1E282138EE000EEFD3 /* RealmSwift */,
 			);
 			productName = trackerVS;
 			productReference = F44121B62815A1720017E1F5 /* trackerVS.app */;
@@ -209,6 +258,7 @@
 			packageReferences = (
 				F44121CD2815B4D60017E1F5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 				F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				F465FC1B282138EE000EEFD3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = F44121B72815A1720017E1F5 /* Products */;
 			projectDirPath = "";
@@ -225,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F44121C62815A1750017E1F5 /* LaunchScreen.storyboard in Resources */,
+				F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */,
 				F44121C32815A1750017E1F5 /* Assets.xcassets in Resources */,
 				F44121C12815A1730017E1F5 /* Main.storyboard in Resources */,
 			);
@@ -239,6 +290,14 @@
 			files = (
 				F44121E52815B9700017E1F5 /* Reusable.swift in Sources */,
 				F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */,
+				F465FC1A28213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift in Sources */,
+				F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */,
+				F465FC2528213D7A000EEFD3 /* RealmPath.swift in Sources */,
+				F465FC2928216B13000EEFD3 /* DetachableObject.swift in Sources */,
+				F465FC2128213976000EEFD3 /* RealmService.swift in Sources */,
+				F465FC2728215F62000EEFD3 /* Date+Ext.swift in Sources */,
+				F4159167281886E8000AFFBA /* Observable.swift in Sources */,
+				F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */,
 				F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */,
 				F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */,
 			);
@@ -482,6 +541,14 @@
 				kind = branch;
 			};
 		};
+		F465FC1B282138EE000EEFD3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -514,6 +581,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		F465FC1C282138EE000EEFD3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F465FC1B282138EE000EEFD3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		F465FC1E282138EE000EEFD3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F465FC1B282138EE000EEFD3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

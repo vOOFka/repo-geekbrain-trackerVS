@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import PinLayout
+import CoreLocation
 
 class MapViewController: UIViewController {
     // MARK: - Properties
@@ -23,58 +24,76 @@ class MapViewController: UIViewController {
         }
     }
     private var routePath: GMSMutablePath?
-    private var locationManager: CLLocationManager?
+    private let locationService = LocationService()
     
-    private var buttonCurrentLocation: UIButton = {
+    private let realmService: RealmService = RealmServiceImplimentation()
+    private var trackLocations: [CLLocationCoordinate2D] = []
+    
+    private var buttonStartUpdatingLocation: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 15.0)
         button.titleLabel?.tintColor = .black
         button.backgroundColor = .orange
-        button.setTitle("Get my location", for: .normal)
+        button.setTitle("Start a new track", for: .normal)
         button.layer.cornerRadius = 5.0
         button.clipsToBounds = true
-        button.addTarget(self, action:#selector(buttonCurrentLocationTap), for: .touchUpInside)
+        button.addTarget(self, action:#selector(buttonStartUpdatingLocationTap), for: .touchUpInside)
         return button
-      }()
+    }()
     private var buttonStopUpdatingLocation: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 15.0)
         button.titleLabel?.tintColor = .white
         button.backgroundColor = .brown
-        button.setTitle("Stop updating location", for: .normal)
+        button.setTitle("Finish the track", for: .normal)
         button.layer.cornerRadius = 5.0
         button.clipsToBounds = true
         button.addTarget(self, action:#selector(buttonStopUpdatingLocationTap), for: .touchUpInside)
         return button
-      }()
-    
+    }()
+    private var buttonShowPreviousRoute: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.titleLabel?.tintColor = .white
+        button.backgroundColor = .systemTeal
+        button.setTitle("Show the previous route", for: .normal)
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
+        button.addTarget(self, action:#selector(buttonShowPreviousRouteTap), for: .touchUpInside)
+        return button
+    }()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMap()
         configureUI()
-        configurLocationManager()
-        configureRoutePath()
+        configureLocationManager()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
-        buttonCurrentLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
+        buttonShowPreviousRoute.pin.top(50.0).right(20.0).height(30.0).minWidth(180.0).sizeToFit()
+        buttonStartUpdatingLocation.pin.bottom(30.0).right(20.0).height(30.0).minWidth(160.0).sizeToFit()
         buttonStopUpdatingLocation.pin.bottom(30.0).left(20.0).height(30.0).minWidth(160.0).sizeToFit()
     }
     
     // MARK: - Configure
     private func configureUI() {
-        mapHolderView.addSubview(buttonCurrentLocation)
+        mapHolderView.addSubview(buttonStartUpdatingLocation)
         mapHolderView.addSubview(buttonStopUpdatingLocation)
+        mapHolderView.addSubview(buttonShowPreviousRoute)
     }
     
     private func configureRoutePath() {
+        mapHolderView.clear()
+        
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
         route?.map = mapHolderView
+        
+        cleanTrackLocations()
     }
     
     private func configureMap() {
@@ -85,53 +104,104 @@ class MapViewController: UIViewController {
         mapHolderView.mapType = .normal
     }
     
+    private func configureLocationManager() {
+        locationService.viewController = self
+        
+        locationService.currentLocation.addObserver(self) { [weak self] (_, _) in
+            guard let self = self,
+                  let currentLocation = self.locationService.currentLocation.value else { return }
+            self.routePath?.add(currentLocation)
+            self.route?.path = self.routePath
+            
+            let position = GMSCameraPosition.camera(withTarget: currentLocation , zoom: 15)
+            self.mapHolderView.animate(to: position)
+            self.addMarker(currentLocation)
+            self.trackLocations.append(currentLocation)
+        }
+    }
+    
     // MARK: - Methods
+    private func cleanTrackLocations() {
+        trackLocations = []
+    }
+
     private func addMarker(_ coordinate: CLLocationCoordinate2D) {
         marker = GMSMarker(position: coordinate)
         marker?.map = mapHolderView
     }
     
-    // MARK: - Button actions
-    @objc private func buttonCurrentLocationTap(sender : UIButton) {
+    public func cancelCurrentTracking() {
+        locationService.stopLocation()
+        showPreviousRoute()
+    }
+    
+    private func showPreviousRoute() {
         configureRoutePath()
-        locationManager?.startUpdatingLocation()
+        pullFromRealm()
+        
+        guard !trackLocations.isEmpty,
+              let firstTrackingPoint = trackLocations.first,
+              let lastTrackingPoint = trackLocations.last
+        else {
+            showError(message: "Previous routes not found", title: "Notification")
+            return
+        }
+        
+        trackLocations.forEach { point in
+            self.routePath?.add(point)
+            self.route?.path = self.routePath
+            self.addMarker(point)
+        }
+        
+        let cameraUpdate = GMSCameraUpdate.fit(
+            GMSCoordinateBounds(coordinate: firstTrackingPoint,
+                                coordinate: lastTrackingPoint))
+        mapHolderView.moveCamera(cameraUpdate)
+    }
+    
+    // MARK: - Button actions
+    @objc private func buttonStartUpdatingLocationTap(sender : UIButton) {
+        configureRoutePath()
+        locationService.startLocation()
     }
     
     @objc private func buttonStopUpdatingLocationTap(sender : UIButton) {
-        locationManager?.stopUpdatingLocation()
+        locationService.stopLocation()
+        pushToRealm()
+    }
+    
+    @objc private func buttonShowPreviousRouteTap(sender : UIButton) {
+        locationService.isActiveLocation ? showTrakingStillActive() : showPreviousRoute()
     }
 }
 
-// MARK: - CLLocationManagerDelegate
-extension MapViewController: CLLocationManagerDelegate {
-    private func configurLocationManager() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-            locationManager?.delegate = self
-            locationManager?.requestWhenInUseAuthorization()
-            locationManager?.allowsBackgroundLocationUpdates = true
+extension MapViewController {
+    //Загрузка данных в БД Realm
+    fileprivate func pushToRealm() {
+        guard !trackLocations.isEmpty,
+              trackLocations.count > 1 else { return }
+        //Преобразование в Realm модель
+        let trackLocationsRealm = RealmPath(trackLocations)
+        //Загрузка
+        do {
+            let saveToDB = try realmService.update(trackLocationsRealm)
+            cleanTrackLocations()
+            print(saveToDB.configuration.fileURL?.absoluteString ?? "No avaliable file DB")
+        } catch (let error) {
+            showError(message: error.localizedDescription)
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-         print("error:: \(error.localizedDescription)")
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager?.requestLocation()
+    //Получение данных из БД
+    fileprivate func pullFromRealm() {
+        do {
+            let lastRealmPath = try realmService.get(RealmPath.self).last
+            let lastRealmPathPoints = lastRealmPath?.trackLocations
+                .toArray()
+                .compactMap({ CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) })
+            trackLocations = lastRealmPathPoints ?? []
+        } catch (let error) {
+            showError(message: error.localizedDescription)
         }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        routePath?.add(location.coordinate)
-        route?.path = routePath
-
-        let position = GMSCameraPosition.camera(withTarget: location.coordinate , zoom: 15)
-        mapHolderView.animate(to: position)
-        print("location:: \(location.coordinate)")
-        
-        addMarker(location.coordinate)
     }
 }
