@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class AuthViewController: UIViewController, Coordinating {
     // MARK: - Public properties
@@ -31,6 +33,7 @@ final class AuthViewController: UIViewController, Coordinating {
         super.viewWillAppear(true)
         configUI()
         registerKeyboardNotifications()
+        configureLoginBindings()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,6 +45,23 @@ final class AuthViewController: UIViewController, Coordinating {
     private func configUI() {
         loginTextField.text = "Test"
         passwordTextField.text = "qwerty1234"
+        enterButton.isEnabled = false
+        signUpButton.isEnabled = false
+    }
+    
+    private func configureLoginBindings() {
+        let _ = Observable
+            .combineLatest(
+                loginTextField.rx.text,
+                passwordTextField.rx.text
+            )
+            .map { login, password in
+                return !(login ?? "").isEmpty && (password ?? "").count >= 6
+            }
+            .bind { [weak enterButton, signUpButton] inputFilled in
+                enterButton?.isEnabled = inputFilled
+                signUpButton?.isEnabled = inputFilled
+            }
     }
     
     private func registerKeyboardNotifications() {

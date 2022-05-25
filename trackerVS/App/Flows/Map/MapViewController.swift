@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import PinLayout
 import CoreLocation
+import RxSwift
 
 final class MapViewController: UIViewController, Coordinating {
     // MARK: - Public properties
@@ -111,20 +112,25 @@ final class MapViewController: UIViewController, Coordinating {
         mapHolderView.mapType = .normal
     }
     
-    private func configureLocationManager() {
-        locationService.viewController = self
-        
-        locationService.currentLocation.addObserver(self) { [weak self] (_, _) in
-            guard let self = self,
-                  let currentLocation = self.locationService.currentLocation.value else { return }
-            self.routePath?.add(currentLocation)
-            self.route?.path = self.routePath
-            
-            let position = GMSCameraPosition.camera(withTarget: currentLocation , zoom: 15)
-            self.mapHolderView.animate(to: position)
-            self.addMarker(currentLocation)
-            self.trackLocations.append(currentLocation)
-        }
+     private func configureLocationManager() {
+        let _ = locationService
+            .currentLocation
+            .asObservable()
+            .bind { [weak self] currentLocation in
+                guard let self = self,
+                      let currentLocation = currentLocation
+                else {
+                    return
+                }
+                
+                self.routePath?.add(currentLocation)
+                self.route?.path = self.routePath
+                
+                let position = GMSCameraPosition.camera(withTarget: currentLocation, zoom: 15)
+                self.mapHolderView.animate(to: position)
+                self.addMarker(currentLocation)
+                self.trackLocations.append(currentLocation)
+            }
     }
     
     // MARK: - Methods
