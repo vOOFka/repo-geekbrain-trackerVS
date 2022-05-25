@@ -7,13 +7,15 @@
 
 import GoogleMaps
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class LocationService: NSObject {
     private let locationManager = CLLocationManager()
     weak var viewController: UIViewController?
     var isActiveLocation = false
     
-    private(set) var currentLocation = MyObservable<CLLocationCoordinate2D?>(nil)
+    private(set) var currentLocation: BehaviorRelay<CLLocationCoordinate2D?> = BehaviorRelay<CLLocationCoordinate2D?>(value: nil)
     private var lastKnownLocation: CLLocationCoordinate2D?
     
     override init() {
@@ -64,7 +66,7 @@ extension LocationService: CLLocationManagerDelegate {
               location.coordinate != lastKnownLocation,
               isActiveLocation
         else { return }
-        currentLocation.value = location.coordinate
+        currentLocation.accept(location.coordinate)
         print("location:: \(location.coordinate)")
     }
 }
