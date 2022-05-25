@@ -13,7 +13,7 @@ final class LocationService: NSObject {
     weak var viewController: UIViewController?
     var isActiveLocation = false
     
-    private(set) var currentLocation = Observable<CLLocationCoordinate2D?>(nil)
+    private(set) var currentLocation = MyObservable<CLLocationCoordinate2D?>(nil)
     private var lastKnownLocation: CLLocationCoordinate2D?
     
     override init() {

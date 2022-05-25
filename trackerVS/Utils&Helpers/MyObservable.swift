@@ -1,5 +1,5 @@
 //
-//  Observable.swift
+//  MyObservable.swift
 //  MillionVS
 //
 //  Created by Home on 11.12.2021.
@@ -31,7 +31,7 @@ public struct ObservableOptions: OptionSet, CustomStringConvertible {
     }
 }
 
-public class Observable<Type> {
+public class MyObservable<Type> {
 
     fileprivate class Callback {
         fileprivate weak var observer: AnyObject?
