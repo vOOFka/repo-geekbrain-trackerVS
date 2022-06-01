@@ -81,6 +81,10 @@ final class MapViewController: UIViewController, Coordinating {
         }
     }
     
+    deinit {
+        print("MapViewController::deinitialized")
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
