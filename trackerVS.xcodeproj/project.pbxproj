@@ -503,6 +503,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trackerVS/Environments/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -533,6 +534,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trackerVS/Environments/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -584,8 +586,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
 			};
 		};
 		F44121D82815B6120017E1F5 /* XCRemoteSwiftPackageReference "PinLayout" */ = {

@@ -67,12 +67,22 @@ final class MapViewController: UIViewController, Coordinating {
         return button
     }()
     
+    private var leakClosure: (() -> Void)?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMap()
         configureUI()
         configureLocationManager()
+        
+        leakClosure = {
+            print(self)
+        }
+    }
+    
+    deinit {
+        print("MapViewController::deinitialized")
     }
     
     override func viewDidLayoutSubviews() {
