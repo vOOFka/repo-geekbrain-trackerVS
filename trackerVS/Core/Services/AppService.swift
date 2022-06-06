@@ -40,4 +40,17 @@ class AppService {
             }
         }
     }
+    
+    func setNotification(_ alertBody: String = "", startOffset: TimeInterval = 0.0) {
+        NotificationsService.shared.isReminderNotificationsAllowed { isAllowed in
+            if isAllowed {
+                let alertBody = (alertBody.isEmpty) ? "Please come back, we will forgive everything!" : alertBody
+                
+                NotificationsService.shared.setNotification(alertBody: alertBody, startOffset: startOffset) { isSet in
+                    print("Notification - \(isSet)")
+                }
+            }
+        }
+    }
+    
 }

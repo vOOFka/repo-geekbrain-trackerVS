@@ -46,6 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               let rootViewController = windowScene.keyWindow?.rootViewController
         else { return }
         appService.showBlurView(rootViewController)
+        appService.setNotification(startOffset: 15.0)
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
