@@ -10,6 +10,18 @@ import UIKit
 enum SceneIdentifier: String {
     case auth = "AuthViewController"
     case map = "MapViewController"
+    case unknow
+    
+    static func sceneIdentifierFromString(identifier: String?) -> SceneIdentifier {
+        switch identifier {
+        case SceneIdentifier.auth.rawValue:
+            return .auth
+        case SceneIdentifier.map.rawValue:
+            return .map
+        default:
+            return .unknow
+        }
+    }
 }
 
 class AppService {
@@ -41,12 +53,14 @@ class AppService {
         }
     }
     
-    func setNotification(_ alertBody: String = "", startOffset: TimeInterval = 0.0) {
+    func setNotification(_ alertBody: String = "", _ restorationIdentifier: String = "", startOffset: TimeInterval = 0.0) {
         NotificationsService.shared.isReminderNotificationsAllowed { isAllowed in
             if isAllowed {
                 let alertBody = (alertBody.isEmpty) ? "Please come back, we will forgive everything!" : alertBody
                 
-                NotificationsService.shared.setNotification(alertBody: alertBody, startOffset: startOffset) { isSet in
+                NotificationsService.shared.setNotification(alertBody: alertBody,
+                                                            restorationIdentifier: restorationIdentifier,
+                                                            startOffset: startOffset) { isSet in
                     print("Notification - \(isSet)")
                 }
             }

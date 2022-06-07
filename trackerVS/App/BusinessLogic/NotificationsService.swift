@@ -10,13 +10,15 @@ import UserNotifications
 
 protocol NotificationsServiceProtocol {
     var notificationUserInfoIdentifierKey: String { get }
+    var notificationRestorationIdentifierKey: String { get }
     
     func isReminderNotificationsAllowed(_ completion: @escaping (Bool) -> ())
-    func setNotification(alertBody: String, startOffset: TimeInterval, _ completion: @escaping (Bool) -> ())
+    func setNotification(alertBody: String, restorationIdentifier: String, startOffset: TimeInterval, _ completion: @escaping (Bool) -> ())
 }
 
 final class NotificationsService: NotificationsServiceProtocol {
     let notificationUserInfoIdentifierKey = "NotificationUserInfoIdentifierKey"
+    let notificationRestorationIdentifierKey = "NotificationRestorationIdentifierKey"
     
     static public let shared = NotificationsService()
     
@@ -31,14 +33,19 @@ final class NotificationsService: NotificationsServiceProtocol {
         })
     }
     
-    public func setNotification(alertBody: String, startOffset: TimeInterval = 0.0, _ completion: @escaping (Bool) -> ()) {
+    public func setNotification(alertBody: String,
+                                restorationIdentifier: String = "",
+                                startOffset: TimeInterval = 0.0,
+                                _ completion: @escaping (Bool) -> ()) {
+        
         let reminderDate: Date = Date()
         let fireDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                                  from: reminderDate.addingTimeInterval(startOffset))
         let content = UNMutableNotificationContent()
         
         content.body = alertBody
-        content.userInfo = [notificationUserInfoIdentifierKey: alertBody]
+        content.userInfo = [notificationUserInfoIdentifierKey: alertBody,
+                            notificationRestorationIdentifierKey: restorationIdentifier]
         content.sound = UNNotificationSound.default
         content.badge = 1
         

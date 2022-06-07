@@ -38,9 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func registerForNotifications() {
-        UNUserNotificationCenter.current().delegate = self
-        
+    func registerForNotifications() {        
         let application = UIApplication.shared
         //register local notifications
         registerLocalNotifications()
@@ -56,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        print("userNotificationCenter didReceive")
-    }
-}
+//extension AppDelegate: UNUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+//        print("userNotificationCenter didReceive")
+//    }
+//}
