@@ -36,6 +36,7 @@
 		F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */; };
 		F474D0BD283EA8B1002EA39D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BC283EA8B1002EA39D /* RxCocoa */; };
 		F474D0BF283EA8B1002EA39D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BE283EA8B1002EA39D /* RxSwift */; };
+		F48D43F62847F9FA0030080E /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D43F52847F9FA0030080E /* NotificationsService.swift */; };
 		F48E4AD1282AF13B006E7A4B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E4AD0282AF13B006E7A4B /* String+Ext.swift */; };
 		F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACD28187EE7001470E8 /* LocationService.swift */; };
 		F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */; };
@@ -65,6 +66,7 @@
 		F465FC2628215F62000EEFD3 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		F465FC2828216B13000EEFD3 /* DetachableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachableObject.swift; sourceTree = "<group>"; };
 		F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F48D43F52847F9FA0030080E /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		F48E4AD0282AF13B006E7A4B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F4979ACD28187EE7001470E8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		F4979ACF281883D7001470E8 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F4979ACD28187EE7001470E8 /* LocationService.swift */,
+				F48D43F52847F9FA0030080E /* NotificationsService.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				F44121BA2815A1720017E1F5 /* AppDelegate.swift in Sources */,
 				F48E4AD1282AF13B006E7A4B /* String+Ext.swift in Sources */,
 				F44121BC2815A1720017E1F5 /* SceneDelegate.swift in Sources */,
+				F48D43F62847F9FA0030080E /* NotificationsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
