@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func registerForNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+        
         let application = UIApplication.shared
         //register local notifications
         registerLocalNotifications()
@@ -51,5 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                 print("Permission granted: \(granted)")
             }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        print("userNotificationCenter didReceive")
     }
 }
