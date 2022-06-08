@@ -166,8 +166,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yhW-Ue-dEp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yhW-Ue-dEp">
                                 <rect key="frame" x="20" y="104" width="374" height="331"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKS-b9-eF1">
                                 <rect key="frame" x="40" y="475" width="334" height="44"/>
@@ -179,6 +180,9 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                     <color key="baseBackgroundColor" red="0.99897331" green="0.51644492149999999" blue="0.26016920799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="tapCameraButton:" destination="KuM-Ob-OeQ" eventType="touchUpInside" id="vMF-AG-P1h"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="D1e-pT-PXb"/>
@@ -193,6 +197,9 @@
                             <constraint firstItem="yhW-Ue-dEp" firstAttribute="trailing" secondItem="D1e-pT-PXb" secondAttribute="trailing" constant="-20" id="lB2-SU-DQp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="yhW-Ue-dEp" id="XFJ-pc-ch9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qq8-2l-dVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

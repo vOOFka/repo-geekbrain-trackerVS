@@ -7,10 +7,16 @@
 
 import UIKit
 
-final class AvatarViewController: UIViewController {
+final class AvatarViewController: UIViewController, Coordinating {
+    var coordinator: Coordinator?    
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
+    @IBAction func tapCameraButton(_ sender: Any) {
+        
+    }
 }
