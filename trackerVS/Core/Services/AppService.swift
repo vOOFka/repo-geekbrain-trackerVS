@@ -10,6 +10,7 @@ import UIKit
 enum SceneIdentifier: String {
     case auth = "AuthViewController"
     case map = "MapViewController"
+    case avatar = "AvatarViewController"
     case unknow
     
     static func sceneIdentifierFromString(identifier: String?) -> SceneIdentifier {

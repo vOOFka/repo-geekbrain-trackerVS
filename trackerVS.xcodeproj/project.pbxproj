@@ -36,6 +36,7 @@
 		F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */; };
 		F474D0BD283EA8B1002EA39D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BC283EA8B1002EA39D /* RxCocoa */; };
 		F474D0BF283EA8B1002EA39D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BE283EA8B1002EA39D /* RxSwift */; };
+		F482A60C28512EEE00BE39D0 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482A60B28512EEE00BE39D0 /* AvatarViewController.swift */; };
 		F48D43F62847F9FA0030080E /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D43F52847F9FA0030080E /* NotificationsService.swift */; };
 		F48E4AD1282AF13B006E7A4B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E4AD0282AF13B006E7A4B /* String+Ext.swift */; };
 		F4979ACE28187EE7001470E8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4979ACD28187EE7001470E8 /* LocationService.swift */; };
@@ -66,6 +67,7 @@
 		F465FC2628215F62000EEFD3 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		F465FC2828216B13000EEFD3 /* DetachableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachableObject.swift; sourceTree = "<group>"; };
 		F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F482A60B28512EEE00BE39D0 /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		F48D43F52847F9FA0030080E /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		F48E4AD0282AF13B006E7A4B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F4979ACD28187EE7001470E8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		F44121E02815B8030017E1F5 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				F482A60A28512CBB00BE39D0 /* Avatar */,
 				F49B392A2822F885007FEB72 /* Auth */,
 				F44121E32815B9110017E1F5 /* Map */,
 				F44121BF2815A1730017E1F5 /* Main.storyboard */,
@@ -237,6 +240,14 @@
 				F465FC2028213976000EEFD3 /* RealmService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F482A60A28512CBB00BE39D0 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				F482A60B28512EEE00BE39D0 /* AvatarViewController.swift */,
+			);
+			path = Avatar;
 			sourceTree = "<group>";
 		};
 		F49B392A2822F885007FEB72 /* Auth */ = {
@@ -339,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F44121E52815B9700017E1F5 /* Reusable.swift in Sources */,
+				F482A60C28512EEE00BE39D0 /* AvatarViewController.swift in Sources */,
 				F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */,
 				F465FC1A28213522000EEFD3 /* CLLocationCoordinate2D+Ext.swift in Sources */,
 				F4979AD0281883D7001470E8 /* UIViewController+Ext.swift in Sources */,
