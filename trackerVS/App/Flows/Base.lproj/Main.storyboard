@@ -176,12 +176,12 @@
                                     <constraint firstAttribute="height" constant="44" id="Ajy-MF-Qzz"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Get photo from camera">
+                                <buttonConfiguration key="configuration" style="filled" title="Get photo from gallery">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                     <color key="baseBackgroundColor" red="0.99897331" green="0.51644492149999999" blue="0.26016920799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="tapCameraButton:" destination="KuM-Ob-OeQ" eventType="touchUpInside" id="vMF-AG-P1h"/>
+                                    <action selector="tapGetPhotoButton:" destination="KuM-Ob-OeQ" eventType="touchUpInside" id="6qS-Uj-wfJ"/>
                                 </connections>
                             </button>
                         </subviews>
