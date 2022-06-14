@@ -14,6 +14,10 @@ final class AvatarViewController: UIViewController, Coordinating, UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        avatarImageView.contentMode = .scaleToFill
+        avatarImageView.clipsToBounds = true
+        
+        avatarImageView.image = coordinator?.appService?.getUserAvatar()
     }
 
     @IBAction func tapGetPhotoButton(_ sender: Any) {
@@ -34,9 +38,12 @@ final class AvatarViewController: UIViewController, Coordinating, UINavigationCo
 extension AvatarViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        avatarImageView.image = info[.editedImage] as? UIImage
-        avatarImageView.contentMode = .scaleToFill
-        avatarImageView.clipsToBounds = true
+        let image = info[.editedImage] as? UIImage
+        avatarImageView.image = image
+        
+        let newUserData = UserData(avatarImage: image?.jpegData(compressionQuality: 80.0))
+        coordinator?.appService?.saveUserData(newUserData)
+        
         dismiss(animated: true)
     }
 }
