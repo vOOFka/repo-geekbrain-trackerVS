@@ -36,6 +36,7 @@
 		F465FC2D2821BB3B000EEFD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */; };
 		F46A30CB28590FB700E9FDCF /* UserDataCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A30CA28590FB700E9FDCF /* UserDataCaretaker.swift */; };
 		F46A30CD2859106C00E9FDCF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A30CC2859106C00E9FDCF /* UserData.swift */; };
+		F46A30CF285926C000E9FDCF /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A30CE285926C000E9FDCF /* UIImage+Ext.swift */; };
 		F474D0BD283EA8B1002EA39D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BC283EA8B1002EA39D /* RxCocoa */; };
 		F474D0BF283EA8B1002EA39D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F474D0BE283EA8B1002EA39D /* RxSwift */; };
 		F482A60C28512EEE00BE39D0 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482A60B28512EEE00BE39D0 /* AvatarViewController.swift */; };
@@ -71,6 +72,7 @@
 		F465FC2C2821BB3B000EEFD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F46A30CA28590FB700E9FDCF /* UserDataCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataCaretaker.swift; sourceTree = "<group>"; };
 		F46A30CC2859106C00E9FDCF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		F46A30CE285926C000E9FDCF /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		F482A60B28512EEE00BE39D0 /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		F48D43F52847F9FA0030080E /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		F48E4AD0282AF13B006E7A4B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				F465FC2628215F62000EEFD3 /* Date+Ext.swift */,
 				F465FC2828216B13000EEFD3 /* DetachableObject.swift */,
 				F48E4AD0282AF13B006E7A4B /* String+Ext.swift */,
+				F46A30CE285926C000E9FDCF /* UIImage+Ext.swift */,
 			);
 			path = "Utils&Helpers";
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46A30CF285926C000E9FDCF /* UIImage+Ext.swift in Sources */,
 				F44121E52815B9700017E1F5 /* Reusable.swift in Sources */,
 				F482A60C28512EEE00BE39D0 /* AvatarViewController.swift in Sources */,
 				F44121BE2815A1730017E1F5 /* MapViewController.swift in Sources */,
