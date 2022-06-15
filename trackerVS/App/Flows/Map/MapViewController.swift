@@ -21,6 +21,11 @@ final class MapViewController: UIViewController, Coordinating {
     private let baseZoom: Float = 15.0
     
     private var marker: GMSMarker?
+    private var markerImage: UIImage? {
+        didSet {
+            markerImage = markerImage?.resized(to: CGSize(width: 60.0, height: 60.0))
+        }
+    }
     private var route: GMSPolyline? {
         didSet {
             route?.strokeColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
@@ -66,6 +71,16 @@ final class MapViewController: UIViewController, Coordinating {
         button.addTarget(self, action:#selector(buttonShowPreviousRouteTap), for: .touchUpInside)
         return button
     }()
+    private var buttonChangeAvatar: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        button.setImage(UIImage(systemName: "camera.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .black
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
+        button.addTarget(self, action:#selector(buttonChangeAvatarTap), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -75,6 +90,11 @@ final class MapViewController: UIViewController, Coordinating {
         configureLocationManager()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        markerImage = coordinator?.appService?.getUserAvatar()
+    }
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapHolderView.pin.all()
@@ -84,6 +104,8 @@ final class MapViewController: UIViewController, Coordinating {
             .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
         buttonStopUpdatingLocation.pin.below(of: buttonStartUpdatingLocation, aligned: .center)
             .height(30.0).marginTop(10.0).minWidth(180.0).sizeToFit()
+        
+        buttonChangeAvatar.pin.bottom(40.0).left(20.0).height(60.0).width(60.0)
     }
     
     // MARK: - Configure
@@ -91,6 +113,7 @@ final class MapViewController: UIViewController, Coordinating {
         mapHolderView.addSubview(buttonStartUpdatingLocation)
         mapHolderView.addSubview(buttonStopUpdatingLocation)
         mapHolderView.addSubview(buttonShowPreviousRoute)
+        mapHolderView.addSubview(buttonChangeAvatar)
     }
     
     private func configureRoutePath() {
@@ -110,6 +133,8 @@ final class MapViewController: UIViewController, Coordinating {
         let camera = GMSCameraPosition(target: baseCoordinates, zoom: baseZoom)
         mapHolderView.camera = camera
         mapHolderView.mapType = .normal
+        
+        markerImage = coordinator?.appService?.getUserAvatar()
     }
     
      private func configureLocationManager() {
@@ -139,8 +164,20 @@ final class MapViewController: UIViewController, Coordinating {
     }
 
     private func addMarker(_ coordinate: CLLocationCoordinate2D) {
+        removeMarker()
         marker = GMSMarker(position: coordinate)
+        
+        let iconView = UIImageView(image: markerImage)
+        iconView.layer.cornerRadius = 10.0
+        iconView.clipsToBounds = true
+        
+        marker?.iconView = iconView
         marker?.map = mapHolderView
+    }
+    
+    private func removeMarker() {
+        marker?.map = nil
+        marker = nil
     }
     
     public func cancelCurrentTracking() {
@@ -185,6 +222,10 @@ final class MapViewController: UIViewController, Coordinating {
     
     @objc private func buttonShowPreviousRouteTap(sender : UIButton) {
         locationService.isActiveLocation ? showTrakingStillActive() : showPreviousRoute()
+    }
+    
+    @objc private func buttonChangeAvatarTap(sender : UIButton) {
+        coordinator?.goToScene(with: .avatar)
     }
 }
 

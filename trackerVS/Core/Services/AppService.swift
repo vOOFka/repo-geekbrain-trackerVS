@@ -10,6 +10,7 @@ import UIKit
 enum SceneIdentifier: String {
     case auth = "AuthViewController"
     case map = "MapViewController"
+    case avatar = "AvatarViewController"
     case unknow
     
     static func sceneIdentifierFromString(identifier: String?) -> SceneIdentifier {
@@ -26,6 +27,19 @@ enum SceneIdentifier: String {
 
 class AppService {
     // MARK: - Methods
+    let userDataCaretaker = UserDataCaretaker()
+    
+    func saveUserData(_ userData: UserData) {
+        userDataCaretaker.save(userData: userData)
+    }
+    
+    func getUserAvatar() -> UIImage? {
+        guard let imageData = userDataCaretaker.retrieveUserData()?.avatarImage else {
+            return nil
+        }
+        
+       return UIImage(data: imageData)
+    }
     
     func getScene(with identifier: SceneIdentifier) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
